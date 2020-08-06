@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: iac
+  cloud:
+    kubernetes:
+      config:
+        name: iac
+        namespace: default

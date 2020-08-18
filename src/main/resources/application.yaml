@@ -1,6 +1,21 @@
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: 123456
-    url: jdbc:postgresql://localhost:5432/demo
+  main:
+    banner-mode: off
+logging:
+  file:
+    name: /var/log/iac.log
+  pattern:
+    file: "{\"time\": \"%d\"
+          , \"level\": \"%p\"
+          , \"pid\": \"${PID:- }\"
+          , \"thread\": \"%t\"
+          , \"app\": \"${spring.application.name}\"
+          , \"source\": \"%logger{255}:%L\"
+          , \"message\": \"%replace(%m%wEx{6}){'[\r\n]+', '\\n'}%nopex\"}%n"
+    console: "{\"time\": \"%d\"
+                       , \"level\": \"%p\"
+                       , \"pid\": \"${PID:- }\"
+                       , \"thread\": \"%t\"
+                       , \"app\": \"${spring.application.name}\"
+                       , \"source\": \"%logger{255}:%L\"
+                       , \"message\": \"%replace(%m%wEx{6}){'[\r\n]+', '\\n'}%nopex\"}%n"

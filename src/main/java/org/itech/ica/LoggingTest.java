@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class LoggingTest {
     private static final Logger logger = LoggerFactory.getLogger(LoggingTest.class);
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 10000)
     public void logException() {
         logger.info("start exception");
 

@@ -1,21 +1,27 @@
 spring:
+  application:
+    name: iac
   main:
     banner-mode: off
 logging:
   file:
-    name: /var/log/iac.log
+    name: /var/log/${spring.application.name}.log
   pattern:
-    file: "{\"time\": \"%d\"
+    file: "{\"timestamp\": \"%d\"
           , \"level\": \"%p\"
           , \"pid\": \"${PID:- }\"
           , \"thread\": \"%t\"
           , \"app\": \"${spring.application.name}\"
           , \"source\": \"%logger{255}:%L\"
           , \"message\": \"%replace(%m%wEx{6}){'[\r\n]+', '\\n'}%nopex\"}%n"
-    console: "{\"time\": \"%d\"
-                       , \"level\": \"%p\"
-                       , \"pid\": \"${PID:- }\"
-                       , \"thread\": \"%t\"
-                       , \"app\": \"${spring.application.name}\"
-                       , \"source\": \"%logger{255}:%L\"
-                       , \"message\": \"%replace(%m%wEx{6}){'[\r\n]+', '\\n'}%nopex\"}%n"
+    console: "{\"timestamp\": \"%d\"
+          , \"level\": \"%p\"
+          , \"pid\": \"${PID:- }\"
+          , \"thread\": \"%t\"
+          , \"app\": \"${spring.application.name}\"
+          , \"source\": \"%logger{255}:%L\"
+          , \"message\": \"%replace(%m%wEx{6}){'[\r\n]+', '\\n'}%nopex\"}%n"
+server:
+  servlet:
+    context-path: /api/iac
+  port: 8080
